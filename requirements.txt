@@ -1,0 +1,7 @@
+aiogram
+langchain
+langchain-google-genai
+langchain-chroma
+langchain-community
+langchain-core
+python-dotenv
