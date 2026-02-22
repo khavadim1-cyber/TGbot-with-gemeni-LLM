@@ -13,6 +13,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.chat_history import BaseChatMessageHistory, InMemoryChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.output_parsers import StrOutputParser 
+from langchain_community.chat_message_histories import FileChatMessageHistory
 
 GOOGLE_API_KEY  = os.getenv("API")
 TELEGRAM_TOKEN= os.getenv("TOKEN")
@@ -25,10 +26,9 @@ logger = logging.getLogger(__name__)
 
 # Memory
 store = {}
-def get_session_history(session_id: str) -> BaseChatMessageHistory:
-    if session_id not in store:
-        store[session_id] = InMemoryChatMessageHistory()
-    return store[session_id]
+def get_session_history(session_id: str):
+    os.makedirs("memory", exist_ok=True)
+    return FileChatMessageHistory(f"memory/{session_id}.json")
 
 # initialisation
 embed_model_name = "models/text-embedding-004" 
@@ -65,7 +65,7 @@ llm = ChatGoogleGenerativeAI(
 )
 
 system_prompt_text = """
-type your prompt here
+Type your prompt here
 {context}
 """
 #Message history
