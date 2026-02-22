@@ -2,7 +2,7 @@
 
 A Telegram bot written in **Python** that integrates **Google Gemini (Generative AI / LLM)** and uses **vector embeddings (ChromaDB)** to answer user questions based on PDF documents.
 
-This project combines a Telegram bot with an LLM-powered knowledge base built from your own documents.
+This project combines a Telegram bot with an LLM-powered knowledge base built from your own documents. Chat memory is saved to JSON file.
 
 ---
 
